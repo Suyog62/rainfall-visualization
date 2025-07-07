@@ -29,10 +29,10 @@ if uploaded_file:
 
     # Step 4: Convert to datetime
     try:
-        df_long['Date'] = pd.to_datetime(df_long['Year'].astype(str) + '-' + df_long['Month'], format='%Y-%B')
-    except:
-        # Try alternative format if month names are short like "Jan", "Feb"
-        df_long['Date'] = pd.to_datetime(df_long['Year'].astype(str) + '-' + df_long['Month'], format='%Y-%b')
+    df_long['Date'] = pd.to_datetime(df_long['Year'].astype(str) + '-' + df_long['Month'], format='%Y-%B')
+except:
+    df_long['Date'] = pd.to_datetime(df_long['Year'].astype(str) + '-' + df_long['Month'], format='%Y-%b')
+
 
     df_long = df_long.sort_values('Date')
 
