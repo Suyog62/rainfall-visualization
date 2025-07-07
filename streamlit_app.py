@@ -29,12 +29,18 @@ if uploaded_file:
 
     # Step 4: Convert to datetime
     try:
-    df_long['Date'] = pd.to_datetime(df_long['Year'].astype(str) + '-' + df_long['Month'], format='%Y-%B')
+# Step 4: Convert to datetime (handle full and short month names)
+try:
+    df_long['Date'] = pd.to_datetime(
+        df_long['Year'].astype(str) + '-' + df_long['Month'],
+        format='%Y-%B'
+    )
 except:
-    df_long['Date'] = pd.to_datetime(df_long['Year'].astype(str) + '-' + df_long['Month'], format='%Y-%b')
+    df_long['Date'] = pd.to_datetime(
+        df_long['Year'].astype(str) + '-' + df_long['Month'],
+        format='%Y-%b'
+    )
 
-
-    df_long = df_long.sort_values('Date')
 
     # Step 5: Annual Rainfall Trend
     st.subheader("Step 5: Total Annual Rainfall")
